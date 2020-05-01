@@ -1,0 +1,35 @@
+.btn-primary {
+    color: #fff;
+    background-color: #c12c2c;
+    border: none;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #673535;
+    border-color: none;
+}
+
+.card {
+    background-color: #171513;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.50rem;
+}
+
+.card-img, .card-img-top {
+    border-top-left-radius: calc(0.50rem - 1px);
+    border-top-right-radius: calc(0.50rem - 1px);
+}
+
+@media (min-width: 576px) {
+    .modal-dialog {
+        max-width: 80%;
+        margin: 1.75rem auto;
+    }
+}
