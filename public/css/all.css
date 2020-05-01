@@ -10,6 +10,12 @@
     border-color: none;
 }
 
+.btn-primary:focus {
+    color: #fff;
+    background-color: #673535;
+    border-color: none;
+}
+
 .card {
     background-color: #171513;
     position: relative;
