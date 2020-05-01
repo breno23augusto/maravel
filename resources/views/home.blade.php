@@ -13,7 +13,7 @@
 
         <div class="links">
             <a href="{{route('all')}}">
-                Clique para ver todos os heróis ou pesquise:
+                Clique para ver alguns heróis ou pesquise:
             </a>
         </div>
         <div>

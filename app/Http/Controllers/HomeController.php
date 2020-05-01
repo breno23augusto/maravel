@@ -40,7 +40,7 @@ class HomeController extends Controller
         $apiPrivateKey = env('MARVEL_API_PRIVATE_KEY');
         $apiUrl .= "characters?ts={$timestamp}&apikey={$apiPublicKey}";
         $apiHash = md5($timestamp . $apiPrivateKey . $apiPublicKey);
-        $apiUrl .= "&hash={$apiHash}";
+        $apiUrl .= "&offset=" . rand(0, 1492) . "&hash={$apiHash}";
 
         $heroesJson = Http::get($apiUrl)
             ->json();
