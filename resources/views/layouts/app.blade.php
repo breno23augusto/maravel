@@ -65,6 +65,8 @@
                 Voltar
             </a>
         </div>
+        <div class="text-center links">
+            <a href="http://marvel.com">Data provided by Marvel. © 2020 MARVEL</a> </div>
     </footer>
 </body>
 
