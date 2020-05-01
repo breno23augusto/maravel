@@ -20,7 +20,6 @@
             <form action="{{route('search')}}" method="POST">
                 @csrf
                 <div class="form-group mb-2">
-                    <label for="hero-name" class="sr-only">Pesquise o nome do Herói</label>
                     <input type="text" class="form-control" id="hero-name" name="hero-name" required>
                 </div>
                 <button type="submit" class="btn btn-primary mb-2">Pesquisar</button>
