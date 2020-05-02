@@ -14,9 +14,9 @@ class HeroesController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(MarvelApi $marvelAPI)
     {
-        $this->marvelAPI = new MarvelApi();
+        $this->marvelAPI = $marvelAPI;
     }
 
     /**
@@ -38,8 +38,7 @@ class HeroesController extends Controller
      */
     public function search(Request $request)
     {
-        $heroeName = $request->input('hero-name');
-        $heroes = $this->marvelAPI->nameStartsWith($heroeName);
+        $heroes = $this->marvelAPI->nameStartsWith($request->input('hero-name'));
         return view('listHeroe', compact('heroes'));
     }
 }

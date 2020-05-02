@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use Carbon\Carbon;
+use App\Contracts\HttpClient;
 use Illuminate\Support\Facades\Http;
 
 class MarvelApi
@@ -11,6 +11,7 @@ class MarvelApi
     private $publicKey;
     private $privateKey;
     private $baseURL;
+    private $httpClient;
 
     const minOffset = 0;
     const maxOffset = 1000;
@@ -21,12 +22,13 @@ class MarvelApi
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(HttpClient $httpClient, $timestamp)
     {
-        $this->timestamp = Carbon::now()->timestamp;
-        $this->publicKey = env('MARVEL_API_PUBLIC_KEY');
-        $this->privateKey = env('MARVEL_API_PRIVATE_KEY');
-        $this->baseURL = env('MARVEL_API_URL');
+        $this->httpClient = $httpClient;
+        $this->timestamp = $timestamp;
+        $this->publicKey = config('marvelAPI.public_key');
+        $this->privateKey = config('marvelAPI.private_key');
+        $this->baseURL = config('marvelAPI.url');
     }
 
     public function getSomeHeroes()
@@ -42,7 +44,7 @@ class MarvelApi
             ]
         );
 
-        return self::prepareResult(Http::get($url)->json());
+        return self::prepareResult($this->httpClient::get($url)->json());
     }
 
     public function nameStartsWith($name)
@@ -56,7 +58,7 @@ class MarvelApi
             ]
         );
 
-        return self::prepareResult(Http::get($url)->json());
+        return self::prepareResult($this->httpClient::get($url)->json());
     }
 
     private function getApiBaseUrlForHeoes()
