@@ -9,6 +9,7 @@
 <div class="container">
     <div class="card-columns">
         @foreach ($heroes as $heroe)
+
         <div class="col-xs-12 col-sm-6 col-md-3">
             <div class="card " style="width: 18rem;">
                 <img class="card-img-top" src="{{$heroe['thumbnail']['path'].'.'.$heroe['thumbnail']['extension']}} " alt="{{$heroe['name']}} image">

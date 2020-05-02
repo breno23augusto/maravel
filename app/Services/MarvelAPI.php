@@ -31,40 +31,84 @@ class MarvelApi
 
     public function getSomeHeroes()
     {
+
         $randOffset = rand(self::minOffset, self::maxOffset);
 
-        $apiUrl = $this->baseURL;
-        $apiUrl .= $this->getApiBaseURlForHeroe();
-        $apiUrl .= "&offset=" . $randOffset;
-        $apiUrl .= "&limit=50";
+        $url = self::concactURL(
+            [
+                $this->getApiBaseUrlForHeoes(),
+                $this->bindParameter('offset', $randOffset),
+                $this->bindParameter('limit', 50)
+            ]
+        );
 
-        $heroesJson = Http::get($apiUrl)->json();
-        return $heroesJson['data']['results'];
+        return self::prepareResult(Http::get($url)->json());
     }
 
     public function nameStartsWith($name)
     {
-        $apiUrl = $this->baseURL;
-        $apiUrl .= $this->getApiBaseURlForHeroe();
-        $apiUrl .= "&nameStartsWith={$name}";
-        $apiUrl .= "&limit=50";
 
-        $heroeJson = Http::get($apiUrl)->json();
-        return $heroeJson['data']['results'];
+        $url = self::concactURL(
+            [
+                $this->getApiBaseUrlForHeoes(),
+                $this->bindParameter('nameStartsWith', $name),
+                $this->bindParameter('limit', 50)
+            ]
+        );
+
+        return self::prepareResult(Http::get($url)->json());
     }
 
-    public function getApiBaseURlForHeroe()
+    private function getApiBaseUrlForHeoes()
     {
-        $apiHash = $this->getAPIHash();
-        $apiUrl = "characters?";
-        $apiUrl .= "ts={$this->timestamp}";
-        $apiUrl .= "&apikey={$this->publicKey}";
-        $apiUrl .= "&hash={$apiHash}";
-        return $apiUrl;
+        $url = self::concactURL(
+            [
+                $this->baseURL,
+                "characters?ts={$this->timestamp}",
+                $this->bindParameter('apikey', $this->publicKey),
+                $this->bindParameter('hash', $this->getAPIHash())
+            ]
+        );
+        return $url;
+    }
+
+    private function bindParameter($string, $value)
+    {
+        return "&{$string}={$value}";
+    }
+
+    private static function concactURL(array $values)
+    {
+        return implode('', $values);
     }
 
     public function getAPIHash()
     {
         return md5($this->timestamp . $this->privateKey . $this->publicKey);
+    }
+
+    public static function prepareResult($result)
+    {
+        if ($result['code'] == 200) {
+            return $result['data']['results'];
+        } else {
+            return self::getNotFoundCharactere();
+        }
+    }
+
+    private static function getNotFoundCharactere()
+    {
+        return [
+            0 => [
+                "id" => 0,
+                "name" => 'não encontrado',
+                "description" => '',
+                "urls" => [],
+                "thumbnail" => [
+                    "path" => "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available",
+                    "extension" => "jpg"
+                ]
+            ]
+        ];
     }
 }
