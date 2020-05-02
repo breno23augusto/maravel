@@ -1,3 +1,11 @@
+<p align="center"><img src="https://github.com/breno23augusto/maravel/blob/master/public/img/my.gif?raw=true" width="400"></p>
+
+## About The Project
+
+ - Studying Laravel Framework and consuming Marvel API;
+ - Frontend with Bootstrap;
+ - Remember to check the Marvel API documentation and fill private and public key into the env file, like in env.example.
+
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">
