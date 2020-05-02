@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\MarvelApi;
+use App\Services\MarvelApi;
 use Illuminate\Http\Request;
 
 class HeroesController extends Controller
