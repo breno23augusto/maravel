@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Contracts\HttpClient;
-use Illuminate\Support\Facades\Http;
 
 class MarvelApi
 {
