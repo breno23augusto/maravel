@@ -90,11 +90,11 @@ class MarvelApi
 
     public static function prepareResult($result)
     {
-        if ($result['code'] == 200) {
-            return $result['data']['results'];
-        } else {
+        if ($result['code'] !== 200 or count($result['data']['results']) == 0) {
             return self::getNotFoundHeroe();
-        }
+        }           
+        
+        return $result['data']['results'];
     }
 
     private static function getNotFoundHeroe()
