@@ -13,7 +13,8 @@
 
         <div class="links">
             <a href="{{route('some')}}">
-                Clique para ver alguns heróis ou pesquise:
+                <div style="text-shadow: 0.5px 0 0 #fff, -0.5px 0 0 #fff, 0 2px 0 #fff, 0 -0.5px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+                color: red;">Clique</div> para ver alguns heróis ou pesquise:
             </a>
         </div>
         <div>
